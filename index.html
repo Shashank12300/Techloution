@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+	<meta charset="utf-8">
+	<title>Student Board</title>
+
+	<!-- Including Jquery-->
+	<script src = "jquery.js"></script>
+
+	<!-- CSS For Styling The Page -->
+	<link rel="stylesheet" href="code.css">
+</head>
+
+<body>
+	<section>
+		<h1>Student Result Board</h1>
+		<!-- TABLE CONSTRUCTION-->
+		<table id='table'> 
+			<!-- HEADING FORMATION -->
+			<tr> 
+				<th>Student Name</th> 
+				<th>Roll Number</th> 
+				<th>Total Marks</th> 
+				<th>Status</th> 
+			</tr> 
+			<script>
+				$(document).ready(function(){
+					$.ajax({
+						url:"data.json",
+						dataType:"json",
+						success:function(data){
+							$(data.users)each(function(index,value){
+								var record="<tr><td>"+(index+1)+"<td><td>"+value.Name+"<td><td>"+value.Totalmarks+"<td><td>"+value.RollNumber+"<td><td>"+value.Status+"<td><td>";
+									$("table").append(record);
+							});
+						}
+					});
+				});
+			</script>
+		</table>
+	</section>
+
+</body>
+</html>
